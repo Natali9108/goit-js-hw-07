@@ -13,6 +13,7 @@
 //зображенням з прикладів бібліотеки basicLightbox.
 
 import { galleryItems } from "./gallery-items.js";
+const galleryBoxRef = document.querySelector(".gallery");
 
 const createGalleryCard = ({ description, original, preview }) =>
 	`<div class="gallery__item">
@@ -25,17 +26,22 @@ const createGalleryCard = ({ description, original, preview }) =>
       />
     </a>
   </div>`;
+
 const galleryCard = galleryItems.map((el) => createGalleryCard(el)).join("");
 
-const galleryBoxRef = document.querySelector(".gallery");
 galleryBoxRef.insertAdjacentHTML("afterbegin", galleryCard);
 
 galleryBoxRef.addEventListener("click", handelGalleryItemClick);
 
 function handelGalleryItemClick(event) {
-  const isImageEl = event.target.classList.contains("gallery__image")
+	const isImageEl = event.target.classList.contains("gallery__image");
 	if (!isImageEl) {
 		return;
 	}
-	console.log(event.target);
+
+	const instance = basicLightbox.create(`
+    <img src="assets/images/image.png" width="800" height="600">
+`);
+
+	instance.show();
 }
