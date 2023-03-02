@@ -1,6 +1,8 @@
 import { galleryItems } from "./gallery-items.js";
 
 const galleryBoxRef = document.querySelector(".gallery");
+const galleryCard = createGalleryCard(galleryItems);
+galleryBoxRef.insertAdjacentHTML("afterbegin", galleryCard);
 
 function createGalleryCard(galleryItems) {
 	return galleryItems
@@ -15,22 +17,7 @@ function createGalleryCard(galleryItems) {
 		.join("");
 }
 
-const galleryCard = createGalleryCard(galleryItems);
-galleryBoxRef.insertAdjacentHTML("afterbegin", galleryCard);
-
-galleryBoxRef.addEventListener("click", handelGalleryItemClick);
-
-function handelGalleryItemClick(event) {
-	event.preventDefault();
-	const isImageEl = event.target.classList.contains("gallery__image");
-	if (!isImageEl) {
-		return;
-	}
-}
-
-new SimpleLightbox(".gallery a", {
-	captionsData: "alt",
+const x = new SimpleLightbox(".gallery a", {
 	captionDelay: 250,
+	captionsData: "alt",
 });
-
-
