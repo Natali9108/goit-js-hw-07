@@ -28,7 +28,7 @@ function handelGalleryItemClick(event) {
 	}
 }
 
-var lightbox = new SimpleLightbox(".gallery a", {});
-lightbox.on("shown.simplelightbox", function () {
-	console.log(lightbox);
+new SimpleLightbox(".gallery a", {
+	captionsData: "alt",
+	captionDelay: 250,
 });
